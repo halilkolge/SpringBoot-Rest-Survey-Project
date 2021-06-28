@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en
+" xmlns:th="http://www.thymeleaf.org"
+>
+<head>
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale-1, shrink-to-fit=no"/>
+    <meta name="description" content=""/>
+    <meta name="author" content=""/>
+    <title>Tablo</title>
+
+    <link rel="stylesheet" th:href="@{/css/pace.min.css}"/>
+    <script th:src="@{/js/pace.min.js}"></script>
+    <!--favicon-->
+    <link rel="icon" th:href="@{/images/favicon.ico}" type="image/x-icon">
+    <!-- simplebar CSS-->
+    <link th:href="@{/plugins/simplebar/css/simplebar.css}" rel="stylesheet"/>
+    <!-- Bootstrap core CSS-->
+    <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet"/>
+    <!-- animate CSS-->
+    <link th:href="@{/css/animate.css}" rel="stylesheet" type="text/css"/>
+    <!-- Icons CSS-->
+    <link th:href="@{/css/icons.css}" rel="stylesheet" type="text/css"/>
+    <!-- Sidebar CSS-->
+    <link th:href="@{/css/sidebar-menu.css}" rel="stylesheet"/>
+    <!-- Custom Style-->
+    <link th:href="@{/css/app-style_edit.css}" rel="stylesheet"/>
+    <!-- skins CSS-->
+    <link th:href="@{/css/skins.css}" rel="stylesheet"/>
+    <!--Bootstrap Datepicker-->
+    <link th:href="@{/plugins/bootstrap-datepicker/css/bootstrap-datepicker.min.css}" rel="stylesheet" type="text/css">
+
+    <link rel="stylesheet" th:href="@{/plugins/notifications/css/lobibox.min.css}"/>
+    <!--Data Tables -->
+    <link th:href="@{/plugins/bootstrap-datatable/css/dataTables.bootstrap4.min.css}" rel="stylesheet" type="text/css">
+    <link th:href="@{/plugins/bootstrap-datatable/css/buttons.bootstrap4.min.css}" rel="stylesheet" type="text/css">
+</head>
+<body>
+<!-- Start wrapper-->
+<div id="wrapper">
+
+    <div id="loading-screen" style="display: none; background-color: white">
+        <div class='loader'>
+            <div class='loader--dot'></div>
+            <div class='loader--dot'></div>
+            <div class='loader--dot'></div>
+            <div class='loader--dot'></div>
+            <div class='loader--dot'></div>
+            <div class='loader--dot'></div>
+            <div class='loader--text'></div>
+        </div>
+    </div>
+    <!--End sidebar-topbar-wrapper-->
+
+    <div class="clearfix"></div>
+    <div class="content-wrapper">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-header gradient-deepblue text-white  text-uppercase">Tuttuğunuz Futbol Takımı TABLO</div>
+                    <div class="ribbon-content"></div>
+                    <div class="card-body">
+                        <!-- Form Başlangıç-->
+                        <form id="FormSave">
+                            <div class="card-body">
+                                <div class="table-responsive">
+                                    <table id="basvuranlar" class="table table-bordered">
+                                        <thead>
+                                        <tr>
+                                            <th>ID</th>
+                                            <th>Adı</th>
+                                            <th>Soyadı</th>
+                                            <th>Cinsiyet</th>
+                                            <th>Doğum Günü</th>
+                                            <th>Takım</th>
+                                            <th>Açıklama</th>
+                                            <th>Anketör Adı</th>
+                                            <th>Anketör Soyadı</th>
+                                            <th>İşlem</th>
+                                        </tr>
+                                        <tr th:each="user : ${takim}">
+                                            <th th:text="${user.id}">ID</th>
+                                            <th th:text="${user.adi}">Adı</th>
+                                            <th th:text="${user.soyadi}">Soyadı</th>
+                                            <th th:text="${user.cinsiyet}">Mail</th>
+                                            <th th:text="${user.dogumGunu}">Mail</th>
+                                            <th th:text="${user.takim}">Mail</th>
+                                            <th th:text="${user.aciklama}">Mail</th>
+                                            <th th:text="${user.anketorAdi}">Mail</th>
+                                            <th th:text="${user.anketorSoyAdi}">Mail</th>
+                                            <th class="text-center">
+                                                <a th:onclick="'javascript:rowClicked(\'' + ${user.id} + '\');'"  class="btn btn-success">Güncelle</a>
+                                            </th>
+                                        </tr>
+                                        </thead>
+                                    </table>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="overlay toggle-menu"></div>
+    <!--Start Back To Top Button-->
+    <a href="javaScript:void(0);" class="back-to-top"><i class="fa fa-angle-double-up"></i> </a>
+    <!-- Bootstrap core JavaScript-->
+</div><!--End wrapper-->
+
+<script th:src="@{/js/jquery.min.js}"></script>
+<script th:src="@{/js/popper.min.js}"></script>
+<script th:src="@{/js/bootstrap.min.js}"></script>
+
+<!-- simplebar js -->
+<script th:src="@{/plugins/simplebar/js/simplebar.js}"></script>
+<!-- sidebar-menu js -->
+<script th:src="@{/js/sidebar-menu.js}"></script>
+
+<!-- Custom scripts -->
+<script th:src="@{/js/app-script.js}"></script>
+
+<script th:src="@{/plugins/notifications/js/lobibox.min.js}"></script>
+<script th:src="@{/plugins/notifications/js/notifications.min.js}"></script>
+<script th:src="@{/plugins/notifications/js/notification-custom-script.js}"></script>
+<!--Form Validatin Script-->
+<script th:src="@{/plugins/jquery-validation/js/jquery.validate.min.js}"></script>
+<script>
+    function rowClicked(value) {
+        location.href = "/anket/guncelle?id=" + value + "&secim="+1;
+    } // todo: öğrenilecek
+</script>
+
+<script th:src="@{/plugins/bootstrap-datatable/js/jquery.dataTables.min.js}"></script>
+<script th:src="@{/plugins/bootstrap-datatable/js/dataTables.bootstrap4.min.js}"></script>
+<script th:src="@{/plugins/bootstrap-datatable/js/dataTables.buttons.min.js}"></script>
+<script th:src="@{/plugins/bootstrap-datatable/js/buttons.bootstrap4.min.js}"></script>
+<script th:src="@{/plugins/bootstrap-datatable/js/jszip.min.js}"></script>
+<script th:src="@{/plugins/bootstrap-datatable/js/pdfmake.min.js}"></script>
+<script th:src="@{/plugins/bootstrap-datatable/js/vfs_fonts.js}"></script>
+<script th:src="@{/plugins/bootstrap-datatable/js/buttons.html5.min.js}"></script>
+<script th:src="@{/plugins/bootstrap-datatable/js/buttons.print.min.js}"></script>
+<script th:src="@{/plugins/bootstrap-datatable/js/buttons.colVis.min.js}"></script>
+
+</body>
+</html>

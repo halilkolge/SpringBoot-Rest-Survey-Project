@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en
+" xmlns:th="http://www.thymeleaf.org"
+>
+<head>
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content=" initial-scale=1, maximum-scale-1, shrink-to-fit=yes"/>
+    <meta name="description" content=""/>
+    <meta name="author" content=""/>
+    <title>ANKET KAYIT</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+    <link rel="stylesheet" th:href="@{/css/pace.min.css}"/>
+    <script th:src="@{/js/pace.min.js}"></script>
+    <!--favicon-->
+    <link rel="icon" th:href="@{/images/logo.png}" type="image/x-icon">
+    <!-- simplebar CSS-->
+    <link th:href="@{/plugins/simplebar/css/simplebar.css}" rel="stylesheet"/>
+    <!-- Bootstrap core CSS-->
+    <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet"/>
+    <!-- animate CSS-->
+    <link th:href="@{/css/animate.css}" rel="stylesheet" type="text/css"/>
+    <!-- Icons CSS-->
+    <link th:href="@{/css/icons.css}" rel="stylesheet" type="text/css"/>
+    <!-- Sidebar CSS-->
+    <link th:href="@{/css/sidebar-menu.css}" rel="stylesheet"/>
+    <!-- Custom Style-->
+    <link th:href="@{/css/app-style_edit.css}" rel="stylesheet"/>
+    <!-- skins CSS-->
+    <link th:href="@{/css/skins.css}" rel="stylesheet"/>
+    <!--Bootstrap Datepicker-->
+    <link th:href="@{/plugins/bootstrap-datepicker/css/bootstrap-datepicker.min.css}" rel="stylesheet" type="text/css">
+
+    <link rel="stylesheet" th:href="@{/plugins/notifications/css/lobibox.min.css}"/>
+
+    <style>
+        .nopad{
+            padding: 1vh;
+        }
+
+        html{
+            overflow-x:hidden ;
+        }
+
+
+    </style>
+
+
+</head>
+<body>
+
+<!--<div th:replace="navbar :: navbar"> </div>-->
+
+<div class="row" style="margin-top: 5vh">
+    <div class="col-lg-12">
+        <div class="card" style="width:90%;margin: auto;margin-bottom: 5vh">
+            <div class="card-header gradient-deepblue text-white  text-uppercase">Hayatınızdan Memnun musunuz? Güncelle </div>
+            <div class="ribbon-content"></div>
+            <div class="card-body">
+                <form id="FormSave">
+                    <div class="form-group">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-sm">
+                                    <label class="">Katılımcı Bilgileri </label>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-sm">
+                                    <label for="ad" class="">Adı </label>
+                                    <input type="text" class="form-control"
+                                           id="ad" name="ad" th:value="${mutlu.adi}"
+                                           placeholder="İsim giriniz" required>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm">
+                                    <label for="soyadi" class="">Soyadı </label>
+                                    <input type="text" class="form-control"
+                                           id="soyadi" name="soyadi" th:value="${mutlu.soyadi}"
+                                           placeholder="Soyisim giriniz" required>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="form-group col-sm">
+                                    <label for="cinsiyet" class="">Cinsiyet</label>
+                                    <select class="form-control" id="cinsiyet" name="cinsiyet">
+                                        <option disabled="disabled" selected="selected"> ----- Cinsiyet Seçiniz-----
+                                        </option>
+                                        <option value="0" th:selected="0==${mutlu.cinsiyet}">Erkek</option>
+                                        <option value="1" th:selected="1==${mutlu.cinsiyet}">Kadın</option>
+                                        <option value="2" th:selected="2==${mutlu.cinsiyet}">Diğer</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="col-sm">
+                                <label>Doğum Tarİhİ</label>
+                                <span class="fa fa-calendar"></span>
+                                <input type="date" id="autoclose-datepicker" name="birthDateStr"
+                                       class="form-control" th:value="${mutlu.dogumGunu}" placeholder="Varsa Doğum Tarihi Alanını Giriniz" required>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-sm">
+                                    <label for="mOran" class="">Mutluluk Oranı </label>
+                                    <input type="text" class="form-control"
+                                           id="mOran" name="mOran" th:value="${mutlu.mutlulukOrani}"
+                                           placeholder="Takım bilgisi giriniz" required>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-sm">
+                                    <label for="mutluE" class="">Sizi en mutlu eden şeyler </label>
+                                    <input type="text" class="form-control"
+                                           id="mutluE" name="mutluE" th:value="${mutlu.mutluEden}"
+                                           placeholder="Takım bilgisi giriniz" required>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-sm">
+                                    <label for="mutsuzE" class="">Sizi en mutsuz eden şeyler </label>
+                                    <input type="text" class="form-control"
+                                           id="mutsuzE" name="mutsuzE" th:value="${mutlu.mutsuzEden}"
+                                           placeholder="Takım bilgisi giriniz" required>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm">
+                                    <label for="aciklama" class="">Açıklama </label>
+                                    <input type="text" class="form-control"
+                                           id="aciklama" name="aciklama" th:value="${mutlu.aciklama}"
+                                           placeholder="Açıklama giriniz" required>
+                                </div>
+                            </div>
+                            <br> <br>
+                            <div class="row">
+                                <div class="col-sm">
+                                    <label class="">Anketör Bilgileri </label>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-sm">
+                                    <label for="aadi" class="">Anketör Adı </label>
+                                    <input type="text" class="form-control"
+                                           id="aadi" name="aadi" th:value="${mutlu.anketorAdi}"
+                                           placeholder="Anketör adı giriniz" required>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-sm">
+                                    <label for="asoyadi" class="">Anketör Soyadı </label>
+                                    <input type="text" class="form-control"
+                                           id="asoyadi" name="asoyadi" th:value="${mutlu.anketorSoyAdi}"
+                                           placeholder="Anketör soyadı giriniz" required>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm">
+                                    <input type="hidden" class="form-control"
+                                           id="id" name="id" th:value="${mutlu.id}"
+                                           placeholder="Anketör soyadı giriniz" required>
+                                </div>
+                            </div>
+                            <br>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-2">
+
+                        </div>
+                        <div class="col-lg-8 text-right">
+                            <button type="submit" class="btn btn-success"><i
+                                    class="fa fa-check-square-o"></i>
+                                Güncelle
+                            </button>
+                            <label>&emsp; &nbsp;&nbsp;&nbsp;</label>
+                            <a th:href="@{/anket/sil/(id=${mutlu.id},secim=2)}" class="btn btn-danger"><i
+                                    class="zmdi zmdi-block-alt"></i>
+                                Sil
+                            </a>
+                        </div>
+                        <div class="col-lg-2">
+
+                        </div>
+                    </div>
+
+                </form>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- Bootstrap core JavaScript-->
+<script th:src="@{/plugins/bootstrap-datepicker/js/bootstrap-datepicker.min.js}"></script>
+
+
+<!-- Bootstrap core JavaScript-->
+<script th:src="@{/js/jquery.min.js}"></script>
+<script th:src="@{/js/popper.min.js}"></script>
+<script th:src="@{/js/bootstrap.min.js}"></script>
+<script th:src="@{/js/bildirim.js}"></script>
+
+<!-- simplebar js -->
+<script th:src="@{/plugins/simplebar/js/simplebar.js}"></script>
+<!-- sidebar-menu js -->
+<script th:src="@{/js/sidebar-menu.js}"></script>
+
+<!-- Custom scripts -->
+<script th:src="@{/js/app-script.js}"></script>
+
+<script th:src="@{/plugins/notifications/js/lobibox.min.js}"></script>
+<script th:src="@{/plugins/notifications/js/notifications.min.js}"></script>
+<script th:src="@{/plugins/notifications/js/notification-custom-script.js}"></script>
+<!--Form Validatin Script-->
+<script th:src="@{/plugins/jquery-validation/js/jquery.validate.min.js}"></script>
+<script th:src="@{/js/jquery-serialize.min.js}"></script>
+<script type="application/javascript" th:src="@{/js/AnketMutluGuncelle.js}"></script>
+
+</body>
+</html>
